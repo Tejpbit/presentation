@@ -88,6 +88,10 @@ def get_picsize_from_asciipic(asciipic, font=monospace8):
     height = len(asciipic) * 10
     return (width, height)
 
+def clear_screen():
+    screen_size = screen.get_size()
+    pygame.draw.rect(screen_size)
+
 def main():
     digitAscii = Pictoasciiart.get_ascii_art("digit2.jpg").split('\n')
 
@@ -108,7 +112,8 @@ def main():
     digit_pic_rect = digitPic.get_rect()
     print digit_pic_rect
     fade_in(digitPic, render_pos_to_match_center, 0.03)
-
+    fade_to_black()
+    pygame.draw.rect(background, BLACK, (0, 0, screen_size[0], screen_size[-1]))
     #background.blit(digitPic, digit_pic_rect)
     #screen.blit(background, (0, 0))
     #pygame.display.update(digit_pic_rect)
